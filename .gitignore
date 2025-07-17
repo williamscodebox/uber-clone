@@ -10,7 +10,6 @@ web-build/
 expo-env.d.ts
 .git/
 .vscode/
-.vscode
 
 # Native
 .kotlin/
@@ -40,3 +39,4 @@ yarn-error.*
 *.tsbuildinfo
 
 app-example
+
