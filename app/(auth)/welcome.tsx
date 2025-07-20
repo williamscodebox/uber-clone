@@ -1,11 +1,22 @@
+import { Href, router } from "expo-router";
 import React from "react";
-import { Text } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
+const signUp = "/(auth)/sign-up" as Href;
 
 const Onboarding = () => {
   return (
-    <SafeAreaView>
-      <Text>Onboarding</Text>
+    <SafeAreaView className="flex h-full items-center justify-between bg-white">
+      <TouchableOpacity
+        onPress={() => {
+          router.replace(signUp);
+          console.log("Navigating to Sign Up");
+        }}
+        className="w-full flex justify-end items-end p-5"
+      >
+        <Text className="text-black text-md font-JakartaBold">Skip</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
