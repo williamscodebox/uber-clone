@@ -42,6 +42,7 @@ const Onboarding = () => {
           <View key={item.id} className="flex items-center justify-center p-5">
             <Image
               source={item.image}
+              style={{ width: 300, height: 300 }} //this line is needed for expo-image, can be removed if using react-native Image
               className="w-full h-[300px]"
               contentFit="contain"
             />
