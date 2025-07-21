@@ -14,7 +14,7 @@
 // import map from "@/assets/icons/map.png";
 // import marker from "@/assets/icons/marker.png";
 // import out from "@/assets/icons/out.png";
-// import person from "@/assets/icons/person.png";
+import person from "@/assets/icons/person.png";
 // import pin from "@/assets/icons/pin.png";
 // import point from "@/assets/icons/point.png";
 // import profile from "@/assets/icons/profile.png";
@@ -43,33 +43,33 @@ export const images = {
   message,
 };
 
-// export const icons = {
-//   arrowDown,
-//   arrowUp,
-//   backArrow,
-//   chat,
-//   checkmark,
-//   close,
-//   dollar,
-//   email,
-//   eyecross,
-//   google,
-//   home,
-//   list,
-//   lock,
-//   map,
-//   marker,
-//   out,
-//   person,
-//   pin,
-//   point,
-//   profile,
-//   search,
-//   selectedMarker,
-//   star,
-//   target,
-//   to,
-// };
+export const icons = {
+  //   arrowDown,
+  //   arrowUp,
+  //   backArrow,
+  //   chat,
+  //   checkmark,
+  //   close,
+  //   dollar,
+  //   email,
+  //   eyecross,
+  //   google,
+  //   home,
+  //   list,
+  //   lock,
+  //   map,
+  //   marker,
+  //   out,
+  person,
+  //   pin,
+  //   point,
+  //   profile,
+  //   search,
+  //   selectedMarker,
+  //   star,
+  //   target,
+  //   to,
+};
 
 export const onboarding = [
   {
