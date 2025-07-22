@@ -42,7 +42,7 @@ const SignUp = () => {
           <InputField
             label="Email"
             placeholder="Enter email"
-            //icon={icons.email}
+            icon={icons.email}
             textContentType="emailAddress"
             value={form.email}
             onChangeText={(value) => setForm({ ...form, email: value })}
@@ -50,7 +50,7 @@ const SignUp = () => {
           <InputField
             label="Password"
             placeholder="Enter password"
-            //icon={icons.lock}
+            icon={icons.lock}
             secureTextEntry={true}
             textContentType="password"
             value={form.password}
@@ -91,7 +91,7 @@ const SignUp = () => {
             </Text>
             <InputField
               label={"Code"}
-              //icon={icons.lock}
+              icon={icons.lock}
               placeholder={"12345"}
               value={verification.code}
               keyboardType="numeric"

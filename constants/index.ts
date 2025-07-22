@@ -5,12 +5,12 @@
 // import checkmark from "@/assets/icons/check.png";
 // import close from "@/assets/icons/close.png";
 // import dollar from "@/assets/icons/dollar.png";
-// import email from "@/assets/icons/email.png";
+import email from "@/assets/icons/email.png";
 // import eyecross from "@/assets/icons/eyecross.png";
 // import google from "@/assets/icons/google.png";
 // import home from "@/assets/icons/home.png";
 // import list from "@/assets/icons/list.png";
-// import lock from "@/assets/icons/lock.png";
+import lock from "@/assets/icons/lock.png";
 // import map from "@/assets/icons/map.png";
 // import marker from "@/assets/icons/marker.png";
 // import out from "@/assets/icons/out.png";
@@ -51,12 +51,12 @@ export const icons = {
   //   checkmark,
   //   close,
   //   dollar,
-  //   email,
+  email,
   //   eyecross,
   //   google,
   //   home,
   //   list,
-  //   lock,
+  lock,
   //   map,
   //   marker,
   //   out,
