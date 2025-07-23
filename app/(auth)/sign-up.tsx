@@ -51,7 +51,15 @@ const SignUp = () => {
         code: verification.code,
       });
       if (completeSignUp.status === "complete") {
-        await fetchAPI("/(api)/user", {
+        // await fetchAPI("/(api)/user", {
+        //   method: "POST",
+        //   body: JSON.stringify({
+        //     name: form.name,
+        //     email: form.email,
+        //     clerkId: completeSignUp.createdUserId,
+        //   }),
+        // });
+        const response = await fetchAPI("/(api)/user", {
           method: "POST",
           body: JSON.stringify({
             name: form.name,
@@ -59,6 +67,16 @@ const SignUp = () => {
             clerkId: completeSignUp.createdUserId,
           }),
         });
+
+        if (!response.ok) {
+          const text = await response.text();
+          console.error("Non-JSON response:", text);
+          throw new Error("Failed to submit user data");
+        }
+
+        const data = await response.json();
+        console.log("Success:", data);
+
         await setActive({ session: completeSignUp.createdSessionId });
         setVerification({
           ...verification,
@@ -134,9 +152,9 @@ const SignUp = () => {
         </View>
         <ReactNativeModal
           isVisible={verification.state === "pending"}
-          onBackdropPress={() =>
-            setVerification({ ...verification, state: "default" })
-          }
+          // onBackdropPress={() =>
+          //   setVerification({ ...verification, state: "default" })
+          // }
           onModalHide={() => {
             if (verification.state === "success") {
               setShowSuccessModal(true);
@@ -167,8 +185,8 @@ const SignUp = () => {
             )}
             <CustomButton
               title="Verify Email"
-              //onPress={onPressVerify}
-              onPress={() => console.log("Verify Email Pressed")}
+              onPress={onPressVerify}
+              // onPress={() => console.log("Verify Email Pressed")}
               className="mt-5 bg-success-500"
             />
           </View>
