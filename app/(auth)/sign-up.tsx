@@ -59,23 +59,6 @@ const SignUp = () => {
             clerkId: completeSignUp.createdUserId,
           }),
         });
-        // const response = await fetchAPI("/(api)/user", {
-        //   method: "POST",
-        //   body: JSON.stringify({
-        //     name: form.name,
-        //     email: form.email,
-        //     clerkId: completeSignUp.createdUserId,
-        //   }),
-        // });
-
-        // if (!response.ok) {
-        //   const text = await response.text();
-        //   console.error("Non-JSON response:", text);
-        //   throw new Error("Failed to submit user data");
-        // }
-
-        // const data = await response.json();
-        // console.log("Success:", data);
 
         await setActive({ session: completeSignUp.createdSessionId });
         setVerification({
