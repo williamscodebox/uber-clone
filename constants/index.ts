@@ -16,13 +16,13 @@ import lock from "@/assets/icons/lock.png";
 // import out from "@/assets/icons/out.png";
 import person from "@/assets/icons/person.png";
 // import pin from "@/assets/icons/pin.png";
-// import point from "@/assets/icons/point.png";
+import point from "@/assets/icons/point.png";
 // import profile from "@/assets/icons/profile.png";
 // import search from "@/assets/icons/search.png";
 // import selectedMarker from "@/assets/icons/selected-marker.png";
 // import star from "@/assets/icons/star.png";
 // import target from "@/assets/icons/target.png";
-// import to from "@/assets/icons/to.png";
+import to from "@/assets/icons/to.png";
 import check from "@/assets/images/check.png";
 import getStarted from "@/assets/images/get-started.png";
 import message from "@/assets/images/message.png";
@@ -62,13 +62,13 @@ export const icons = {
   //   out,
   person,
   //   pin,
-  //   point,
+  point,
   //   profile,
   //   search,
   //   selectedMarker,
   //   star,
   //   target,
-  //   to,
+  to,
 };
 
 export const onboarding = [

@@ -36,12 +36,12 @@ declare interface MapProps {
 declare interface Ride {
   origin_address: string;
   destination_address: string;
-  origin_latitude: number;
-  origin_longitude: number;
-  destination_latitude: number;
-  destination_longitude: number;
+  origin_latitude: string; // Changed to string to match the original type, originally was a number
+  origin_longitude: string; // Changed to string to match the original type, originally was a number
+  destination_latitude: string; // Changed to string to match the original type, originally was a number
+  destination_longitude: string; // Changed to string to match the original type, originally was a number
   ride_time: number;
-  fare_price: number;
+  fare_price: string; // Changed to string to match the original type, originally was a number
   payment_status: string;
   driver_id: number;
   user_id: string;
