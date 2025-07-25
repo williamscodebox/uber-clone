@@ -37,7 +37,8 @@ export default function Layout() {
         tabBarStyle: {
           backgroundColor: "#333333",
           borderRadius: 50,
-          paddingBottom: 0, // ios only
+          paddingTop: 18, // android only
+          //paddingBottom: 10, // ios only
           overflow: "hidden",
           marginHorizontal: 20,
           marginBottom: 20,
@@ -61,13 +62,14 @@ export default function Layout() {
           ),
         }}
       />
-      {/* <Tabs.Screen
+      <Tabs.Screen
         name="rides"
         options={{
           title: "Rides",
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-           <TabIcon source={icons.list} focused={focused} />
+            //<TabIcon source={icons.list} focused={focused} />
+            <TabIcon source={icons.email} focused={focused} />
           ),
         }}
       />
@@ -78,6 +80,7 @@ export default function Layout() {
           headerShown: false,
           tabBarIcon: ({ focused }) => (
             //<TabIcon source={icons.chat} focused={focused} />
+            <TabIcon source={icons.email} focused={focused} />
           ),
         }}
       />
@@ -87,10 +90,11 @@ export default function Layout() {
           title: "Profile",
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-           // <TabIcon source={icons.profile} focused={focused} />
+            // <TabIcon source={icons.profile} focused={focused} />
+            <TabIcon source={icons.email} focused={focused} />
           ),
         }}
-      /> */}
+      />
     </Tabs>
   );
 }
