@@ -11,6 +11,7 @@ expo-env.d.ts
 .git/
 .vscode/
 .env
+.env.local
 
 # Native
 .kotlin/
