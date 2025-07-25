@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const Home = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView className="bg-general-500">
       <Text>Home</Text>
       <SignOutButton />
     </SafeAreaView>
