@@ -14,8 +14,15 @@ const RideCard = ({ ride }: { ride: Ride }) => {
             }}
             className="w-[80px] h-[90px] rounded-lg"
           />
-          {/* // The above geoapify call should be replaced with a valid API key from your environment variables. */}
-          {/* Instead of calling Geoapify directly from the client, you can create an API route in (api)/map */}
+          {/* // The above geoapify call should be replaced with a valid API key from your environment variables. 
+          Instead of calling Geoapify directly from the client, you can create an API route in (api)/map
+          Use the code below whern the ApI route is set up and hosted properly.
+          <Image
+            source={{
+              uri: `/(api)/map?lat=${ride.destination_latitude}&lon=${ride.destination_longitude}&zoom=14`,
+            }}
+            className="w-[80px] h-[90px] rounded-lg"
+          /> */}
 
           <View className="flex flex-col mx-5 gap-y-5 flex-1">
             <View className="flex flex-row items-center gap-x-2">
