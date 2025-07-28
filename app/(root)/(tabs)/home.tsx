@@ -2,7 +2,8 @@ import RideCard from "@/components/RideCard";
 import { SignOutButton } from "@/components/SignOutButton";
 import { icons, images } from "@/constants";
 import { recentRides } from "@/data/rides";
-import { useUser } from "@clerk/clerk-expo";
+import { useAuth, useUser } from "@clerk/clerk-expo";
+import { router } from "expo-router";
 import React from "react";
 import {
   ActivityIndicator,
@@ -18,9 +19,14 @@ const blankData: any = [];
 
 const Home = () => {
   const { user } = useUser();
-  //const { signOut } = useAuth();
+  const { signOut } = useAuth();
   // const loading = false; // Placeholder for loading state
   const loading = false; // Placeholder for loading state
+
+  const handleSignOut = () => {
+    signOut();
+    router.replace("/(auth)/sign-in");
+  };
 
   return (
     <SafeAreaView className="bg-general-500">
@@ -62,8 +68,8 @@ const Home = () => {
                 Welcome {user?.firstName}👋
               </Text>
               <TouchableOpacity
-                //onPress={handleSignOut}
-                onPress={() => console.log("Sign Out Pressed")}
+                onPress={handleSignOut}
+                //onPress={() => console.log("Sign Out Pressed")}
                 className="justify-center items-center w-10 h-10 rounded-full bg-white"
               >
                 <Image source={icons.out} className="w-4 h-4" />
