@@ -12,14 +12,14 @@ import google from "@/assets/icons/google.png";
 // import list from "@/assets/icons/list.png";
 import lock from "@/assets/icons/lock.png";
 // import map from "@/assets/icons/map.png";
-// import marker from "@/assets/icons/marker.png";
+import marker from "@/assets/icons/marker.png";
 import out from "@/assets/icons/out.png";
 import person from "@/assets/icons/person.png";
-// import pin from "@/assets/icons/pin.png";
+import pin from "@/assets/icons/pin.png";
 import point from "@/assets/icons/point.png";
 // import profile from "@/assets/icons/profile.png";
 import search from "@/assets/icons/search.png";
-// import selectedMarker from "@/assets/icons/selected-marker.png";
+import selectedMarker from "@/assets/icons/selected-marker.png";
 // import star from "@/assets/icons/star.png";
 // import target from "@/assets/icons/target.png";
 import to from "@/assets/icons/to.png";
@@ -58,14 +58,14 @@ export const icons = {
   //   list,
   lock,
   //   map,
-  //   marker,
+  marker,
   out,
   person,
-  //   pin,
+  pin,
   point,
   //   profile,
   search,
-  //   selectedMarker,
+  selectedMarker,
   //   star,
   //   target,
   to,
