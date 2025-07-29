@@ -1,3 +1,4 @@
+import GoogleTextInput from "@/components/GoogleTextInput";
 import RideCard from "@/components/RideCard";
 import { SignOutButton } from "@/components/SignOutButton";
 import { icons, images } from "@/constants";
@@ -22,6 +23,8 @@ const Home = () => {
   const { signOut } = useAuth();
   // const loading = false; // Placeholder for loading state
   const loading = false; // Placeholder for loading state
+  //
+  // const { setUserLocation, setDestinationLocation } = useLocationStore();
 
   const handleSignOut = () => {
     // console.log("Signing out pressed");
@@ -29,6 +32,16 @@ const Home = () => {
     router.replace("/(auth)/sign-in");
   };
 
+  const handleDestinationPress = (location: {
+    latitude: number;
+    longitude: number;
+    address: string;
+  }) => {
+    //setDestinationLocation(location);
+    console.log("Destination selected:", location);
+
+    //router.push("/(root)/find-ride");
+  };
   return (
     <SafeAreaView className="bg-general-500">
       <FlatList
@@ -79,11 +92,11 @@ const Home = () => {
               </TouchableOpacity>
             </View>
 
-            {/* <GoogleTextInput
+            <GoogleTextInput
               icon={icons.search}
               containerStyle="bg-white shadow-md shadow-neutral-300"
               handlePress={handleDestinationPress}
-            /> */}
+            />
 
             <>
               <Text className="text-xl font-JakartaBold mt-5 mb-3">
