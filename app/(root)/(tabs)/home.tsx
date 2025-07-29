@@ -24,6 +24,7 @@ const Home = () => {
   const loading = false; // Placeholder for loading state
 
   const handleSignOut = () => {
+    // console.log("Signing out pressed");
     signOut();
     router.replace("/(auth)/sign-in");
   };
@@ -69,7 +70,6 @@ const Home = () => {
               </Text>
               <TouchableOpacity
                 onPress={handleSignOut}
-                //onPress={() => console.log("Sign Out Pressed")}
                 className="justify-center items-center w-10 h-10 rounded-full bg-white"
               >
                 <Image source={icons.out} className="w-4 h-4" />
