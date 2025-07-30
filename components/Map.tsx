@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import MapView, { PROVIDER_DEFAULT } from "react-native-maps";
+import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 
 // import { useDriverStore, useLocationStore } from "@/store";
 import { MarkerData } from "@/types/type";
@@ -73,7 +73,7 @@ const Map = () => {
 
   return (
     <MapView
-      provider={PROVIDER_DEFAULT}
+      provider={PROVIDER_GOOGLE}
       className="w-full h-full rounded-2xl"
 
       // showsPointsOfInterest={false}
