@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-import MapView from "react-native-maps";
+import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 
 // import { useDriverStore, useLocationStore } from "@/store";
 import { MarkerData } from "@/types/type";
+import { useEffect } from "react";
 
 // const directionsAPI = process.env.EXPO_PUBLIC_DIRECTIONS_API_KEY;
 
 const Map = () => {
+  useEffect(() => {
+    console.log("🗺️ MapView mounted!");
+  }, []);
   // const {
   //   userLongitude,
   //   userLatitude,
@@ -74,6 +78,11 @@ const Map = () => {
   return (
     <MapView
       //className="w-full h-full rounded-2xl"
+      provider={PROVIDER_GOOGLE}
+      provider="google"
+      showsUserLocation={true}
+      showsMyLocationButton={true}
+      showsBuildings={true}
       style={{ flex: 1 }}
       initialRegion={{
         latitude: 37.78825,
