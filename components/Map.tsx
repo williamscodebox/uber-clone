@@ -79,7 +79,6 @@ const Map = () => {
     <MapView
       //className="w-full h-full rounded-2xl"
       provider={PROVIDER_GOOGLE}
-      provider="google"
       showsUserLocation={true}
       showsMyLocationButton={true}
       showsBuildings={true}
