@@ -83,11 +83,11 @@ const Map = () => {
       // showsMyLocationButton={true}
       // showsBuildings={true}
       style={{ width: 200, height: 200 }}
-      region={{
-        latitude: 43.001,
-        longitude: -81.2,
-        latitudeDelta: 0.01,
-        longitudeDelta: 0.01,
+      initialRegion={{
+        latitude: 37.78825,
+        longitude: -122.4324,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
       }}
 
       // showsPointsOfInterest={false}
