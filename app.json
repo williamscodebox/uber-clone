@@ -16,11 +16,6 @@
         "foregroundImage": "./assets/images/adaptive-icon1.png",
         "backgroundColor": "#ffffff"
       },
-      "config": {
-        "googleMaps": {
-          "apiKey": "process.env.GOOGLE_MAPS_API_KEY"
-        }
-      },
       "edgeToEdgeEnabled": true,
       "package": "com.devcrew.uberclone"
     },
@@ -39,7 +34,7 @@
       [
         "react-native-maps",
         {
-          "androidGoogleMapsApiKey": "GOOGLE_MAPS_API_KEY"
+          "androidGoogleMapsApiKey": "process.env.GOOGLE_MAPS_API_KEY"
           //"iosGoogleMapsApiKey": "YOUR_API_KEY"
         }
       ],

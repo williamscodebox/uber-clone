@@ -79,15 +79,15 @@ const Map = () => {
     <MapView
       //className="w-full h-full rounded-2xl"
       // provider={PROVIDER_GOOGLE}
-      showsUserLocation={true}
-      showsMyLocationButton={true}
-      showsBuildings={true}
-      style={{ flex: 1 }}
-      initialRegion={{
-        latitude: 37.78825,
-        longitude: -122.4324,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
+      // showsUserLocation={true}
+      // showsMyLocationButton={true}
+      // showsBuildings={true}
+      style={{ width: 200, height: 200 }}
+      region={{
+        latitude: 43.001,
+        longitude: -81.2,
+        latitudeDelta: 0.01,
+        longitudeDelta: 0.01,
       }}
 
       // showsPointsOfInterest={false}
