@@ -6,7 +6,10 @@
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "env": {
+        "GOOGLE_MAPS_API_KEY": "" /// use eas secrets to add key
+      }
     },
     "preview": {
       "distribution": "internal"
