@@ -7,12 +7,15 @@ const googleKey: string = process.env.GOOGLE_MAPS_API_KEY || "";
 
 // Ensure that the GOOGLE_MAPS_API_KEY is set
 if (!process.env.GOOGLE_MAPS_API_KEY) {
-  throw new Error("Missing GOOGLE_MAPS_API_KEY in .env file");
+  console.warn(
+    "⚠️ GOOGLE_MAPS_API_KEY is missing. Maps may not work properly."
+  );
 }
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
-  name: "Ryde", // required
-  slug: "uber-clone", // required
+  ...config,
+  name: "Ryde",
+  slug: "uber-clone",
   version: "1.0.0",
   orientation: "portrait",
   icon: "./assets/images/icon1.png",
@@ -24,18 +27,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     bundler: "metro",
     output: "server",
     favicon: "./assets/images/favicon.png",
-  },
-
-  experiments: {
-    typedRoutes: true,
-  },
-  extra: {
-    router: {
-      origin: "https://uber.com/",
-    },
-    eas: {
-      projectId: "aaa3379f-2976-43bd-aa87-e6ca215026d0",
-    },
   },
 
   android: {
@@ -83,4 +74,15 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     ],
     "expo-secure-store",
   ],
+  experiments: {
+    typedRoutes: true,
+  },
+  extra: {
+    router: {
+      origin: "https://uber.com/",
+    },
+    eas: {
+      projectId: "aaa3379f-2976-43bd-aa87-e6ca215026d0",
+    },
+  },
 });
