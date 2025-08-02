@@ -9,7 +9,7 @@ import { useEffect } from "react";
 
 // const directionsAPI = process.env.EXPO_PUBLIC_DIRECTIONS_API_KEY;
 
-const Map = () => {
+const Map = (map: any) => {
   useEffect(() => {
     console.log("🗺️ MapView mounted!");
   }, []);
@@ -79,6 +79,7 @@ const Map = () => {
 
   return (
     <MapView
+      key={map}
       //className="w-full h-full rounded-2xl"
       provider={PROVIDER_DEFAULT}
       style={{ width: "100%", height: 300 }}

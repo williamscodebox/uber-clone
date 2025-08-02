@@ -13,6 +13,7 @@ import {
   ActivityIndicator,
   FlatList,
   Image,
+  Platform,
   Text,
   TouchableOpacity,
   View,
@@ -22,6 +23,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 const blankData: any = [];
 
 const Home = () => {
+  const [mapKey, setMapKey] = useState(new Date().getTime());
   const { user } = useUser();
   const { signOut } = useAuth();
   // const loading = false; // Placeholder for loading state
@@ -71,6 +73,13 @@ const Home = () => {
     console.log("Destination selected:", location);
 
     //router.push("/(root)/find-ride");
+  };
+  const test = () => {
+    console.log("Test function called");
+    if (Platform.OS === "android") {
+      setMapKey(new Date().getTime());
+      console.log("Map key updated for Android");
+    }
   };
   return (
     <SafeAreaView className="bg-general-500">
@@ -133,7 +142,7 @@ const Home = () => {
                 Your current location
               </Text>
               <View className="flex flex-row items-center bg-transparent h-[300px]">
-                <Map />
+                <Map key={mapKey} map={mapKey} />
               </View>
             </>
 
@@ -148,6 +157,15 @@ const Home = () => {
             <SignOutButton />
           </View>
         }
+        onScroll={({ nativeEvent }) => {
+          const yOffset = nativeEvent.contentOffset.y;
+          if (yOffset <= 0) {
+            setMapKey(new Date().getTime()); // Re-render the map
+            console.log("Scrolled to top, refreshing map");
+            test();
+          }
+        }}
+        scrollEventThrottle={16} // Recommended for smoother tracking
       />
     </SafeAreaView>
   );
