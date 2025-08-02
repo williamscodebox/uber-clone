@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import MapView from "react-native-maps";
+import MapView, { PROVIDER_DEFAULT } from "react-native-maps";
 
 // import { useDriverStore, useLocationStore } from "@/store";
+import { calculateRegion } from "@/lib/map";
+import { useLocationStore } from "@/store";
 import { MarkerData } from "@/types/type";
 import { useEffect } from "react";
 
@@ -11,13 +13,13 @@ const Map = () => {
   useEffect(() => {
     console.log("🗺️ MapView mounted!");
   }, []);
-  // const {
-  //   userLongitude,
-  //   userLatitude,
-  //   destinationLatitude,
-  //   destinationLongitude,
-  // } = useLocationStore();
-  // const { selectedDriver, setDrivers } = useDriverStore();
+  const {
+    userLongitude,
+    userLatitude,
+    destinationLatitude,
+    destinationLongitude,
+  } = useLocationStore();
+  //const { selectedDriver, setDrivers } = useDriverStore();
 
   // const { data: drivers, loading, error } = useFetch<Driver[]>("/(api)/driver");
   const [markers, setMarkers] = useState<MarkerData[]>([]);
@@ -54,12 +56,12 @@ const Map = () => {
   //   }
   // }, [markers, destinationLatitude, destinationLongitude]);
 
-  // const region = calculateRegion({
-  //   userLatitude,
-  //   userLongitude,
-  //   destinationLatitude,
-  //   destinationLongitude,
-  // });
+  const region = calculateRegion({
+    userLatitude,
+    userLongitude,
+    destinationLatitude,
+    destinationLongitude,
+  });
 
   // if (loading || (!userLatitude && !userLongitude))
   //   return (
@@ -78,24 +80,14 @@ const Map = () => {
   return (
     <MapView
       //className="w-full h-full rounded-2xl"
-      // provider={PROVIDER_GOOGLE}
-      // showsUserLocation={true}
-      // showsMyLocationButton={true}
-      // showsBuildings={true}
+      provider={PROVIDER_DEFAULT}
       style={{ width: "100%", height: 300 }}
       tintColor="black"
       mapType="mutedStandard"
-      initialRegion={{
-        latitude: 43.001,
-        longitude: -81.2,
-        latitudeDelta: 0.01,
-        longitudeDelta: 0.01,
-      }}
-
-      // showsPointsOfInterest={false}
-      //initialRegion={region}
-      // showsUserLocation={true}
-      // userInterfaceStyle="light"
+      //showsPointsOfInterest={false}
+      initialRegion={region}
+      showsUserLocation={true}
+      userInterfaceStyle="light"
     >
       {/* {markers.map((marker, index) => (
         <Marker

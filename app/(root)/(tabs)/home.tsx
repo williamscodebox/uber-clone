@@ -4,9 +4,11 @@ import RideCard from "@/components/RideCard";
 import { SignOutButton } from "@/components/SignOutButton";
 import { icons, images } from "@/constants";
 import { recentRides } from "@/data/rides";
+import { useLocationStore } from "@/store";
 import { useAuth, useUser } from "@clerk/clerk-expo";
+import * as Location from "expo-location";
 import { router } from "expo-router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
@@ -25,13 +27,39 @@ const Home = () => {
   // const loading = false; // Placeholder for loading state
   const loading = false; // Placeholder for loading state
   //
-  // const { setUserLocation, setDestinationLocation } = useLocationStore();
+  const { setUserLocation, setDestinationLocation } = useLocationStore();
+  const [hasPermission, setHasPermission] = useState<boolean>(false);
 
   const handleSignOut = () => {
     // console.log("Signing out pressed");
     signOut();
     router.replace("/(auth)/sign-in");
   };
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        setHasPermission(false);
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+
+      const address = await Location.reverseGeocodeAsync({
+        latitude: location.coords?.latitude!,
+        longitude: location.coords?.longitude!,
+      });
+
+      setUserLocation({
+        //latitude: location.coords?.latitude,
+        //longitude: location.coords?.longitude,
+        latitude: 37.78825,
+        longitude: -122.4324,
+        address: `${address[0].name}, ${address[0].region}`,
+      });
+    })();
+  }, []);
 
   const handleDestinationPress = (location: {
     latitude: number;
