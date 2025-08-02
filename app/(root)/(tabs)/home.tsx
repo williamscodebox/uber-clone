@@ -50,6 +50,7 @@ const Home = () => {
         latitude: location.coords?.latitude!,
         longitude: location.coords?.longitude!,
       });
+      console.log("Address:", address);
 
       setUserLocation({
         //latitude: location.coords?.latitude,
