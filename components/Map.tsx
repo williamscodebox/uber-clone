@@ -83,6 +83,8 @@ const Map = () => {
       // showsMyLocationButton={true}
       // showsBuildings={true}
       style={{ width: "100%", height: 300 }}
+      tintColor="black"
+      mapType="mutedStandard"
       initialRegion={{
         latitude: 43.001,
         longitude: -81.2,
