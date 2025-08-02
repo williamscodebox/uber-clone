@@ -86,6 +86,7 @@ const Map = () => {
       mapType="mutedStandard"
       //showsPointsOfInterest={false}
       initialRegion={region}
+      region={region}
       showsUserLocation={true}
       userInterfaceStyle="light"
     >
