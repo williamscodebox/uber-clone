@@ -37,7 +37,7 @@ export default function Layout() {
         tabBarStyle: {
           backgroundColor: "#333333",
           borderRadius: 50,
-          paddingTop: 18, // android only
+          paddingBottom: 30, // android only
           //paddingBottom: 10, // ios only
           overflow: "hidden",
           marginHorizontal: 20,

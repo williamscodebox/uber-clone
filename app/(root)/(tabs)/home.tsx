@@ -7,8 +7,8 @@ import { recentRides } from "@/data/rides";
 import { useLocationStore } from "@/store";
 import { useAuth, useUser } from "@clerk/clerk-expo";
 import * as Location from "expo-location";
-import { router } from "expo-router";
-import React, { useEffect, useState } from "react";
+import { router, useFocusEffect } from "expo-router";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
@@ -75,12 +75,19 @@ const Home = () => {
     //router.push("/(root)/find-ride");
   };
   const test = () => {
-    console.log("Test function called");
     if (Platform.OS === "android") {
       setMapKey(new Date().getTime());
-      console.log("Map key updated for Android");
+      // console.log("Map key updated for Android");
     }
   };
+  useFocusEffect(
+    useCallback(() => {
+      if (Platform.OS === "android") {
+        setMapKey(new Date().getTime());
+        //console.log("Map key updated for Android");
+      }
+    }, [])
+  );
   return (
     <SafeAreaView className="bg-general-500">
       <FlatList
@@ -159,7 +166,7 @@ const Home = () => {
         }
         onScroll={({ nativeEvent }) => {
           const yOffset = nativeEvent.contentOffset.y;
-          if (yOffset <= 0) {
+          if (yOffset <= 400 && yOffset >= 350) {
             setMapKey(new Date().getTime()); // Re-render the map
             console.log("Scrolled to top, refreshing map");
             test();
