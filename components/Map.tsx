@@ -90,6 +90,16 @@ const Map = (map: any) => {
       showsUserLocation={true}
       userInterfaceStyle="light"
     >
+      {userLatitude && userLongitude && (
+        <Marker
+          coordinate={{
+            latitude: userLatitude,
+            longitude: userLongitude,
+          }}
+          title="Your Location"
+          image={icons.pin}
+        />
+      )}
       {markers.map((marker, index) => (
         <Marker
           key={marker.id}
@@ -103,7 +113,6 @@ const Map = (map: any) => {
           }
         />
       ))}
-
       {/* {destinationLatitude && destinationLongitude && (
         <>
           <Marker
