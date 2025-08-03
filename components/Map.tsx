@@ -1,11 +1,9 @@
-import React, { useState } from "react";
-import MapView, { PROVIDER_DEFAULT } from "react-native-maps";
-
-// import { useDriverStore, useLocationStore } from "@/store";
-import { calculateRegion } from "@/lib/map";
-import { useLocationStore } from "@/store";
+import { drivers } from "@/data/drivers";
+import { calculateRegion, generateMarkersFromData } from "@/lib/map";
+import { useDriverStore, useLocationStore } from "@/store";
 import { MarkerData } from "@/types/type";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import MapView, { PROVIDER_DEFAULT } from "react-native-maps";
 
 // const directionsAPI = process.env.EXPO_PUBLIC_DIRECTIONS_API_KEY;
 
@@ -19,24 +17,24 @@ const Map = (map: any) => {
     destinationLatitude,
     destinationLongitude,
   } = useLocationStore();
-  //const { selectedDriver, setDrivers } = useDriverStore();
+  const { selectedDriver, setDrivers } = useDriverStore();
 
   // const { data: drivers, loading, error } = useFetch<Driver[]>("/(api)/driver");
   const [markers, setMarkers] = useState<MarkerData[]>([]);
 
-  // useEffect(() => {
-  //   if (Array.isArray(drivers)) {
-  //     if (!userLatitude || !userLongitude) return;
+  useEffect(() => {
+    if (Array.isArray(drivers)) {
+      if (!userLatitude || !userLongitude) return;
 
-  //     const newMarkers = generateMarkersFromData({
-  //       data: drivers,
-  //       userLatitude,
-  //       userLongitude,
-  //     });
+      const newMarkers = generateMarkersFromData({
+        data: drivers,
+        userLatitude,
+        userLongitude,
+      });
 
-  //     setMarkers(newMarkers);
-  //   }
-  // }, [drivers, userLatitude, userLongitude]);
+      setMarkers(newMarkers);
+    }
+  }, [drivers, userLatitude, userLongitude]);
 
   // useEffect(() => {
   //   if (
