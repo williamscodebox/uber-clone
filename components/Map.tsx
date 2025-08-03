@@ -1,9 +1,10 @@
+import { icons } from "@/constants";
 import { drivers } from "@/data/drivers";
 import { calculateRegion, generateMarkersFromData } from "@/lib/map";
 import { useDriverStore, useLocationStore } from "@/store";
 import { MarkerData } from "@/types/type";
 import React, { useEffect, useState } from "react";
-import MapView, { PROVIDER_DEFAULT } from "react-native-maps";
+import MapView, { Marker, PROVIDER_DEFAULT } from "react-native-maps";
 
 // const directionsAPI = process.env.EXPO_PUBLIC_DIRECTIONS_API_KEY;
 
@@ -89,7 +90,7 @@ const Map = (map: any) => {
       showsUserLocation={true}
       userInterfaceStyle="light"
     >
-      {/* {markers.map((marker, index) => (
+      {markers.map((marker, index) => (
         <Marker
           key={marker.id}
           coordinate={{
@@ -103,7 +104,7 @@ const Map = (map: any) => {
         />
       ))}
 
-      {destinationLatitude && destinationLongitude && (
+      {/* {destinationLatitude && destinationLongitude && (
         <>
           <Marker
             key="destination"
@@ -128,7 +129,7 @@ const Map = (map: any) => {
             strokeWidth={2}
           />
         </>
-      )} */}
+      )}  */}
     </MapView>
   );
 };

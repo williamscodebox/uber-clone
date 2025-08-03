@@ -13,12 +13,12 @@ declare interface Driver {
 declare interface MarkerData {
   latitude: number;
   longitude: number;
-  id: number;
+  id: string; //number;
   title: string;
   profile_image_url: string;
   car_image_url: string;
   car_seats: number;
-  rating: number;
+  rating: string; //number;
   first_name: string;
   last_name: string;
   time?: number;
