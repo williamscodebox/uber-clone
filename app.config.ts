@@ -4,6 +4,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 const googleKey: string = process.env.GOOGLE_MAPS_API_KEY || "";
+const googleKey2: string = process.env.GOOGLE_PLACES_API_KEY || "";
 
 // Ensure that the GOOGLE_MAPS_API_KEY is set
 if (!process.env.GOOGLE_MAPS_API_KEY) {
@@ -78,6 +79,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     typedRoutes: true,
   },
   extra: {
+    GOOGLE_PLACES_API_KEY: googleKey2,
     router: {
       origin: "https://uber.com/",
     },
