@@ -1,3 +1,4 @@
+import GoogleTextInput from "@/components/GoogleTextInput";
 import Map from "@/components/Map";
 import RideCard from "@/components/RideCard";
 import { SignOutButton } from "@/components/SignOutButton";
@@ -137,14 +138,14 @@ const Home = () => {
                 <Image source={icons.out} className="w-4 h-4" />
               </TouchableOpacity>
             </View>
-            {/* 
+
             <View style={{ zIndex: 100 }}>
               <GoogleTextInput
                 icon={icons.search}
                 containerStyle="bg-white shadow-md shadow-neutral-300"
                 handlePress={handleDestinationPress}
               />
-            </View> */}
+            </View>
 
             <>
               <Text className="text-xl font-JakartaBold mt-5 mb-3">

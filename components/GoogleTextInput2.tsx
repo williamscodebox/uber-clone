@@ -19,8 +19,9 @@ const GoogleTextInput2 = ({ handlePress, icon, containerStyle }: any) => {
       <GooglePlacesAutocomplete
         placeholder="Search for a location"
         fetchDetails={true}
-        minLength={2}
-        debounce={300}
+        debounce={300} // ✅ must be a number
+        minLength={2} // ✅ must be a number
+        timeout={10000} // ✅ must be a number
         query={{ key: apiKey, language: "en" }}
         onPress={(data, details = null) => {
           setIsLoading(false);
