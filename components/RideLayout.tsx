@@ -35,7 +35,7 @@ const RideLayout = ({
                 />
               </View>
             </TouchableOpacity>
-            <Text className="text-xl font-JakartaSemiBold ml-5">
+            <Text className="text-xl font-JakartaSemiBold ml-2 bg-gray-50 rounded-full p-1 px-2">
               {title || "Go Back"}
             </Text>
           </View>

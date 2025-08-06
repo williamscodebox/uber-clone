@@ -58,7 +58,7 @@ const Home = () => {
         longitude: location.coords?.longitude,
         //latitude: 37.78825,
         //longitude: -122.4324,
-        address: `${address[0].name}, ${address[0].region}`,
+        address: `${address[0].name} ${address[0].street}, ${address[0].city}, ${address[0].region}`,
       });
     })();
   }, []);

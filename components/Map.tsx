@@ -79,9 +79,9 @@ const Map = (map: any) => {
   return (
     <MapView
       key={map}
-      //className="w-full h-full rounded-2xl"
+      className="w-full h-full rounded-2xl"
       provider={PROVIDER_DEFAULT}
-      style={{ width: "100%", height: 300 }}
+      style={{ width: "100%", height: "100%" }}
       tintColor="black"
       mapType="mutedStandard"
       //showsPointsOfInterest={false}

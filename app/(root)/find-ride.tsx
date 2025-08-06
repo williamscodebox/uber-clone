@@ -17,6 +17,8 @@ const FindRide = () => {
     setUserLocation,
   } = useLocationStore();
 
+  console.log("userAddress", userAddress);
+
   return (
     <RideLayout title="Ride">
       <View className="my-3">
@@ -46,7 +48,7 @@ const FindRide = () => {
       <CustomButton
         title="Find Now"
         onPress={() => router.push(confirmRide)}
-        className="mt-5"
+        className="mt-5 mb-8"
       />
     </RideLayout>
   );
