@@ -7,7 +7,7 @@ import { recentRides } from "@/data/rides";
 import { useLocationStore } from "@/store";
 import { useAuth, useUser } from "@clerk/clerk-expo";
 import * as Location from "expo-location";
-import { router, useFocusEffect } from "expo-router";
+import { Href, router, useFocusEffect } from "expo-router";
 import React, { useCallback, useEffect, useState } from "react";
 import {
   ActivityIndicator,
@@ -21,14 +21,13 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const blankData: any = [];
+const findRide = "/(root)/find-ride" as Href;
 
 const Home = () => {
   const [mapKey, setMapKey] = useState(new Date().getTime());
   const { user } = useUser();
   const { signOut } = useAuth();
-  // const loading = false; // Placeholder for loading state
   const loading = false; // Placeholder for loading state
-  //
   const { setUserLocation, setDestinationLocation } = useLocationStore();
   const [hasPermission, setHasPermission] = useState<boolean>(false);
 
@@ -69,10 +68,10 @@ const Home = () => {
     longitude: number;
     address: string;
   }) => {
-    //setDestinationLocation(location);
+    setDestinationLocation(location);
     console.log("Destination selected:", location);
 
-    //router.push("/(root)/find-ride");
+    router.push(findRide);
   };
   const test = () => {
     if (Platform.OS === "android") {

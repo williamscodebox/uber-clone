@@ -23,27 +23,6 @@ const GoogleTextInput = ({
     <View
       className={`flex flex-row items-center justify-center relative z-50 rounded-xl ${containerStyle}`}
     >
-      {/* <Text>Search</Text> */}
-      {/* <GooglePlacesAutocomplete
-        placeholder="Search"
-        fetchDetails={true}
-        onPress={(data, details = null) => {
-          console.log("DATA:", data);
-          console.log("DETAILS:", details);
-        }}
-        query={{
-          key: googlePlacesApiKey,
-          language: "en",
-        }}
-        onFail={(error) => console.warn("Google Places Error", error)}
-        listEmptyComponent={() => <Text>No results found</Text>}
-        minLength={2}
-        enablePoweredByContainer={false}
-        styles={{
-          textInput: { fontSize: 16 },
-        }}
-        keyboardShouldPersistTaps="handled"
-      /> */}
       <GooglePlacesAutocomplete
         fetchDetails={true}
         placeholder="Search"
@@ -127,21 +106,11 @@ const GoogleTextInput = ({
         enablePoweredByContainer={false}
         //nearbyPlacesAPI="none"
         keyboardShouldPersistTaps="handled"
-        // styles={{
-        //   textInput: {
-        //     backgroundColor: textInputBackgroundColor
-        //       ? textInputBackgroundColor
-        //       : "white",
-        //     fontSize: 16,
-        //     fontWeight: "600",
-        //     marginTop: 5,
-        //     width: "100%",
-        //     borderRadius: 200,
-        //   },
-        // }}
         predefinedPlaces={[]}
         textInputProps={{
           onFocus: () => setIsLoading(true),
+          placeholderTextColor: "gray",
+          placeholder: initialLocation ?? "Where do you want to go?",
         }}
         renderLeftButton={() => (
           <View className="justify-center items-center w-6 h-6">
@@ -152,10 +121,6 @@ const GoogleTextInput = ({
             />
           </View>
         )}
-        // textInputProps={{
-        //   placeholderTextColor: "gray",
-        //   placeholder: initialLocation ?? "Where do you want to go?",
-        // }}
       />
     </View>
   );
