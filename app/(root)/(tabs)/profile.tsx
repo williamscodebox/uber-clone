@@ -1,7 +1,5 @@
-import GoogleTextInput from "@/components/GoogleTextInput";
-import { icons } from "@/constants";
 import React from "react";
-import { Text, View } from "react-native";
+import { Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 //console.log("API Key in Profile:", googlePlacesApiKey);
@@ -20,13 +18,13 @@ const Profile = () => {
   return (
     <SafeAreaView>
       <Text>Profile</Text>
-      <View style={{ zIndex: 100 }}>
+      {/* <View style={{ zIndex: 100 }}>
         <GoogleTextInput
           icon={icons.search}
           containerStyle="bg-white shadow-md shadow-neutral-300"
           handlePress={handleDestinationPress}
         />
-      </View>
+      </View> */}
     </SafeAreaView>
   );
 };
