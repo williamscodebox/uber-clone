@@ -50,37 +50,37 @@ const GoogleTextInput = ({
         debounce={300} // ✅ must be a number
         minLength={2} // ✅ must be a number
         timeout={10000} // ✅ must be a number
-        // styles={{
-        //   textInputContainer: {
-        //     alignItems: "center",
-        //     justifyContent: "center",
-        //     borderRadius: 20,
-        //     marginHorizontal: 20,
-        //     position: "relative",
-        //     shadowColor: "#d4d4d4",
-        //   },
-        //   textInput: {
-        //     backgroundColor: textInputBackgroundColor
-        //       ? textInputBackgroundColor
-        //       : "white",
-        //     fontSize: 16,
-        //     fontWeight: "600",
-        //     marginTop: 5,
-        //     width: "100%",
-        //     borderRadius: 200,
-        //   },
-        //   listView: {
-        //     backgroundColor: textInputBackgroundColor
-        //       ? textInputBackgroundColor
-        //       : "white",
-        //     position: "relative",
-        //     top: 0,
-        //     width: "100%",
-        //     borderRadius: 10,
-        //     shadowColor: "#d4d4d4",
-        //     zIndex: 99,
-        //   },
-        // }}
+        styles={{
+          textInputContainer: {
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: 20,
+            marginHorizontal: 20,
+            position: "relative",
+            shadowColor: "#d4d4d4",
+          },
+          textInput: {
+            backgroundColor: textInputBackgroundColor
+              ? textInputBackgroundColor
+              : "white",
+            fontSize: 16,
+            fontWeight: "600",
+            marginTop: 5,
+            width: "100%",
+            borderRadius: 200,
+          },
+          listView: {
+            backgroundColor: textInputBackgroundColor
+              ? textInputBackgroundColor
+              : "white",
+            position: "relative",
+            top: 0,
+            width: "100%",
+            borderRadius: 10,
+            shadowColor: "#d4d4d4",
+            zIndex: 99,
+          },
+        }}
         onPress={(data, details = null) => {
           setIsLoading(false);
           console.log("✅ Autocomplete onPress triggered");
@@ -127,18 +127,18 @@ const GoogleTextInput = ({
         enablePoweredByContainer={false}
         //nearbyPlacesAPI="none"
         keyboardShouldPersistTaps="handled"
-        styles={{
-          textInput: {
-            backgroundColor: textInputBackgroundColor
-              ? textInputBackgroundColor
-              : "white",
-            fontSize: 16,
-            fontWeight: "600",
-            marginTop: 5,
-            width: "100%",
-            borderRadius: 200,
-          },
-        }}
+        // styles={{
+        //   textInput: {
+        //     backgroundColor: textInputBackgroundColor
+        //       ? textInputBackgroundColor
+        //       : "white",
+        //     fontSize: 16,
+        //     fontWeight: "600",
+        //     marginTop: 5,
+        //     width: "100%",
+        //     borderRadius: 200,
+        //   },
+        // }}
         predefinedPlaces={[]}
         textInputProps={{
           onFocus: () => setIsLoading(true),
@@ -147,7 +147,7 @@ const GoogleTextInput = ({
           <View className="justify-center items-center w-6 h-6">
             <Image
               source={icon ? icon : icons.search}
-              className="w-7 h-7 ml-1 mt-9"
+              className="w-7 h-7 "
               resizeMode="contain"
             />
           </View>
