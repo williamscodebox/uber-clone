@@ -4,7 +4,7 @@ import backArrow from "@/assets/icons/back-arrow.png";
 // import chat from "@/assets/icons/chat.png";
 // import checkmark from "@/assets/icons/check.png";
 // import close from "@/assets/icons/close.png";
-// import dollar from "@/assets/icons/dollar.png";
+import dollar from "@/assets/icons/dollar.png";
 import email from "@/assets/icons/email.png";
 // import eyecross from "@/assets/icons/eyecross.png";
 import google from "@/assets/icons/google.png";
@@ -20,7 +20,7 @@ import point from "@/assets/icons/point.png";
 // import profile from "@/assets/icons/profile.png";
 import search from "@/assets/icons/search.png";
 import selectedMarker from "@/assets/icons/selected-marker.png";
-// import star from "@/assets/icons/star.png";
+import star from "@/assets/icons/star.png";
 import target from "@/assets/icons/target.png";
 import to from "@/assets/icons/to.png";
 import check from "@/assets/images/check.png";
@@ -50,7 +50,7 @@ export const icons = {
   //   chat,
   //   checkmark,
   //   close,
-  //   dollar,
+  dollar,
   email,
   //   eyecross,
   google,
@@ -66,7 +66,7 @@ export const icons = {
   //   profile,
   search,
   selectedMarker,
-  //   star,
+  star,
   target,
   to,
 };

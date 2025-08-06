@@ -24,6 +24,7 @@ const Map = (map: any) => {
   const [markers, setMarkers] = useState<MarkerData[]>([]);
 
   useEffect(() => {
+    setDrivers(drivers as MarkerData[]);
     if (Array.isArray(drivers)) {
       if (!userLatitude || !userLongitude) return;
 

@@ -1,14 +1,15 @@
+import Map from "@/components/Map";
+import { icons } from "@/constants";
+import { useDriverStore } from "@/store";
 import BottomSheet, {
+  BottomSheetFlatList,
   BottomSheetScrollView,
-  BottomSheetView,
 } from "@gorhom/bottom-sheet";
 import { router } from "expo-router";
 import React, { useRef } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-
-import Map from "@/components/Map";
-import { icons } from "@/constants";
+import DriverCard from "./DriverCard";
 
 const RideLayout = ({
   title,
@@ -20,6 +21,7 @@ const RideLayout = ({
   children: React.ReactNode;
 }) => {
   const bottomSheetRef = useRef<BottomSheet>(null);
+  const { drivers, selectedDriver, setSelectedDriver } = useDriverStore();
 
   return (
     <GestureHandlerRootView className="flex-1">
@@ -49,15 +51,29 @@ const RideLayout = ({
           index={0}
         >
           {title === "Choose a Driver" ? (
-            <BottomSheetView
-              style={{
-                flex: 1,
-                padding: 20,
-              }}
-            >
-              {children}
-            </BottomSheetView>
+            // <BottomSheetView
+            //   style={{
+            //     flex: 1,
+            //     padding: 20,
+            //   }}
+            // >
+            <BottomSheetFlatList
+              data={drivers}
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={({ item }) => (
+                <DriverCard
+                  item={item}
+                  selected={selectedDriver!}
+                  setSelected={() => setSelectedDriver(parseInt(item.id!))}
+                />
+              )}
+              ListFooterComponent={() => (
+                <View className="mx-5 mt-10 mb-8">{children}</View>
+              )}
+            />
           ) : (
+            //   {children}
+            // </BottomSheetView>
             <BottomSheetScrollView
               style={{
                 flex: 1,

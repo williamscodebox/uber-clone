@@ -17,8 +17,6 @@ const FindRide = () => {
     setUserLocation,
   } = useLocationStore();
 
-  console.log("userAddress", userAddress);
-
   return (
     <RideLayout title="Ride">
       <View className="my-3">
