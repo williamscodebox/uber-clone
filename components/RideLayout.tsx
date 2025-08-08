@@ -66,7 +66,7 @@ const RideLayout = ({
                 <DriverCard
                   item={item}
                   selected={selectedDriver!}
-                  setSelected={() => setSelectedDriver(parseInt(item.id!))}
+                  setSelected={() => setSelectedDriver(Number(item.id!))}
                 />
               )}
               ListFooterComponent={() => (
