@@ -1,12 +1,11 @@
 import { useUser } from "@clerk/clerk-expo";
 // import { StripeProvider } from "@stripe/stripe-react-native";
-import { Image, Text, View } from "react-native";
-
-//import Payment from "@/components/Payment";
+import Payment from "@/components/Payment";
 import RideLayout from "@/components/RideLayout";
 import { icons } from "@/constants";
 import { formatTime } from "@/lib/utils";
 import { useDriverStore, useLocationStore } from "@/store";
+import { Image, Text, View } from "react-native";
 
 const BookRide = () => {
   const { user } = useUser();
@@ -92,13 +91,13 @@ const BookRide = () => {
           </View>
         </View>
 
-        {/* <Payment
-            fullName={user?.fullName!}
-            email={user?.emailAddresses[0].emailAddress!}
-            amount={driverDetails?.price!}
-            driverId={driverDetails?.id}
-            rideTime={driverDetails?.time!}
-          /> */}
+        <Payment
+          fullName={user?.fullName!}
+          email={user?.emailAddresses[0].emailAddress!}
+          amount={driverDetails?.price!}
+          driverId={Number(driverDetails?.id)}
+          rideTime={driverDetails?.time!}
+        />
       </>
     </RideLayout>
     // {/* </StripeProvider> */}

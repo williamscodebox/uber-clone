@@ -57,6 +57,8 @@ const RideLayout = ({
             //     padding: 20,
             //   }}
             // >
+            // {children}
+            // </BottomSheetView>
             <BottomSheetFlatList
               data={drivers}
               keyExtractor={(item, index) => index.toString()}
@@ -72,8 +74,6 @@ const RideLayout = ({
               )}
             />
           ) : (
-            //   {children}
-            // </BottomSheetView>
             <BottomSheetScrollView
               style={{
                 flex: 1,
