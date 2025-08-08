@@ -56,14 +56,16 @@ const BookRide = () => {
           <View className="flex flex-row items-center justify-between w-full border-b border-white py-3">
             <Text className="text-lg font-JakartaRegular">Ride Price</Text>
             <Text className="text-lg font-JakartaRegular text-[#0CC25F]">
-              ${driverDetails?.price}
+              {/* ${driverDetails?.price}  ///// use this code once data strrem is completed in app setup */}
+              ${driverDetails?.price || 50!}
             </Text>
           </View>
 
           <View className="flex flex-row items-center justify-between w-full border-b border-white py-3">
             <Text className="text-lg font-JakartaRegular">Pickup Time</Text>
             <Text className="text-lg font-JakartaRegular">
-              {formatTime(driverDetails?.time!)}
+              {/* {formatTime(driverDetails?.time!)} ///// use this code once data strrem is completed in app setup */}
+              {formatTime(driverDetails?.time || 5!)}
             </Text>
           </View>
 
