@@ -5,24 +5,12 @@ import { formatTime } from "@/lib/utils";
 import { useDriverStore, useLocationStore } from "@/store";
 import { useUser } from "@clerk/clerk-expo";
 import { StripeProvider } from "@stripe/stripe-react-native";
-import { useEffect, useState } from "react";
 import { Image, Text, View } from "react-native";
 
 const BookRide = () => {
   const { user } = useUser();
   const { userAddress, destinationAddress } = useLocationStore();
   const { drivers, selectedDriver } = useDriverStore();
-
-  const [publishableKey, setPublishableKey] = useState("");
-
-  const fetchPublishableKey = async () => {
-    // const key = await fetchKey(); // fetch key from your server here
-    //setPublishableKey(key);
-  };
-
-  useEffect(() => {
-    fetchPublishableKey();
-  }, []);
 
   const driverDetails = drivers?.filter(
     (driver) => +driver.id === selectedDriver
