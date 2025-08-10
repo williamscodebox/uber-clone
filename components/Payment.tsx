@@ -48,7 +48,7 @@ const Payment = ({
       merchantDisplayName: "Example, Inc.",
       intentConfiguration: {
         mode: {
-          amount: parseInt(amount) * 100,
+          amount: 1099, // parseInt(amount) * 100,
           currencyCode: "usd",
         },
         confirmHandler: async (
@@ -127,8 +127,8 @@ const Payment = ({
       <CustomButton
         title="Confirm Ride"
         className="my-10"
-        //onPress={openPaymentSheet}
-        onPress={() => console.log("Payment button pressed")}
+        onPress={openPaymentSheet}
+        //onPress={() => console.log("Payment button pressed")}
       />
 
       <ReactNativeModal
