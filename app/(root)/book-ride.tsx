@@ -96,7 +96,7 @@ const BookRide = () => {
           <Payment
             fullName={user?.fullName!}
             email={user?.emailAddresses[0].emailAddress!}
-            amount={driverDetails?.price!}
+            amount={driverDetails?.price ?? "50"}
             driverId={Number(driverDetails?.id)}
             rideTime={driverDetails?.time!}
           />
