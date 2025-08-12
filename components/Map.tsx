@@ -1,9 +1,10 @@
 import { icons } from "@/constants";
-import { drivers } from "@/data/drivers";
+import { useFetch } from "@/lib/fetch";
 import { calculateRegion, generateMarkersFromData } from "@/lib/map";
 import { useDriverStore, useLocationStore } from "@/store";
-import { MarkerData } from "@/types/type";
+import { Driver, MarkerData } from "@/types/type";
 import React, { useEffect, useState } from "react";
+import { ActivityIndicator, Text, View } from "react-native";
 import MapView, { Marker, PROVIDER_DEFAULT } from "react-native-maps";
 
 // const directionsAPI = process.env.EXPO_PUBLIC_DIRECTIONS_API_KEY;
@@ -20,7 +21,7 @@ const Map = (map: any) => {
   } = useLocationStore();
   const { selectedDriver, setDrivers } = useDriverStore();
 
-  // const { data: drivers, loading, error } = useFetch<Driver[]>("/(api)/driver");
+  const { data: drivers, loading, error } = useFetch<Driver[]>("/(api)/driver");
   const [markers, setMarkers] = useState<MarkerData[]>([]);
 
   useEffect(() => {
@@ -63,19 +64,19 @@ const Map = (map: any) => {
     destinationLongitude,
   });
 
-  // if (loading || (!userLatitude && !userLongitude))
-  //   return (
-  //     <View className="flex justify-between items-center w-full">
-  //       <ActivityIndicator size="small" color="#000" />
-  //     </View>
-  //   );
+  if (loading || (!userLatitude && !userLongitude))
+    return (
+      <View className="flex justify-between items-center w-full">
+        <ActivityIndicator size="small" color="#000" />
+      </View>
+    );
 
-  // if (error)
-  //   return (
-  //     <View className="flex justify-between items-center w-full">
-  //       <Text>Error: {error}</Text>
-  //     </View>
-  //   );
+  if (error)
+    return (
+      <View className="flex justify-between items-center w-full">
+        <Text>Error: {error}</Text>
+      </View>
+    );
 
   return (
     <MapView
