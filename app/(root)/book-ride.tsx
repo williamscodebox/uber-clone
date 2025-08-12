@@ -65,7 +65,7 @@ const BookRide = () => {
               <Text className="text-lg font-JakartaRegular">Pickup Time</Text>
               <Text className="text-lg font-JakartaRegular">
                 {/* {formatTime(driverDetails?.time!)} ///// use this code once data stream is completed in app setup */}
-                {formatTime(driverDetails?.time || 5!)}
+                {formatTime(parseInt(`${driverDetails?.time}`) || 5!)}
               </Text>
             </View>
 
