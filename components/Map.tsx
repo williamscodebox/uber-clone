@@ -1,8 +1,7 @@
 import { icons } from "@/constants";
-import { useFetch } from "@/lib/fetch";
 import { calculateRegion, generateMarkersFromData } from "@/lib/map";
 import { useDriverStore, useLocationStore } from "@/store";
-import { Driver, MarkerData } from "@/types/type";
+import { MarkerData } from "@/types/type";
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, Text, View } from "react-native";
 import MapView, { Marker, PROVIDER_DEFAULT } from "react-native-maps";
@@ -10,31 +9,25 @@ import MapView, { Marker, PROVIDER_DEFAULT } from "react-native-maps";
 // const directionsAPI = process.env.EXPO_PUBLIC_DIRECTIONS_API_KEY;
 
 const Map = (map: any) => {
-  useEffect(() => {
-    console.log("🗺️ MapView mounted!");
-  }, []);
   const {
     userLongitude,
     userLatitude,
     destinationLatitude,
     destinationLongitude,
   } = useLocationStore();
-  const { drivers, selectedDriver, setDrivers } = useDriverStore();
-
-  const {
-    data: driversPulled,
-    loading,
-    error,
-  } = useFetch<Driver[]>("/(api)/driver");
+  const { drivers, selectedDriver, loading, error, setDrivers, fetchDrivers } =
+    useDriverStore();
   const [markers, setMarkers] = useState<MarkerData[]>([]);
-  console.log("🚗 Drivers fetched:", driversPulled);
 
   useEffect(() => {
-    if (driversPulled && Array.isArray(driversPulled)) {
-      setDrivers(driversPulled as MarkerData[]);
+    console.log("🗺️ MapView mounted!");
+    if (drivers.length === 0) {
+      fetchDrivers();
     }
+  }, []);
 
-    if (!userLatitude || !userLongitude) return;
+  useEffect(() => {
+    if (!userLatitude || !userLongitude || drivers.length === 0) return;
 
     const newMarkers = generateMarkersFromData({
       data: drivers,
@@ -85,33 +78,34 @@ const Map = (map: any) => {
     );
 
   return (
-    <MapView
-      key={map}
-      className="w-full h-full rounded-2xl"
-      provider={PROVIDER_DEFAULT}
-      style={{ width: "100%", height: "100%" }}
-      tintColor="black"
-      mapType="mutedStandard"
-      //showsPointsOfInterest={false}
-      initialRegion={region}
-      region={region}
-      showsUserLocation={true}
-      userInterfaceStyle="light"
-    >
-      {userLatitude && userLongitude && (
-        <Marker
-          coordinate={{
-            latitude: userLatitude,
-            longitude: userLongitude,
-          }}
-          title="Your Location"
-          image={icons.pin}
-        />
-      )}
-      {Array.isArray(markers) &&
-        markers.map((marker, index) => (
+    <>
+      <MapView
+        key={map}
+        className="w-full h-full rounded-2xl"
+        provider={PROVIDER_DEFAULT}
+        style={{ width: "100%", height: "100%" }}
+        tintColor="black"
+        mapType="mutedStandard"
+        //showsPointsOfInterest={false}
+        // initialRegion={region}
+        region={region}
+        showsUserLocation={true}
+        userInterfaceStyle="light"
+      >
+        {userLatitude && userLongitude && (
           <Marker
-            key={marker.id}
+            coordinate={{
+              latitude: userLatitude,
+              longitude: userLongitude,
+            }}
+            title="Your Location"
+            image={icons.pin}
+          />
+        )}
+        {markers.map((marker, index) => (
+          <Marker
+            key={`marker-${marker.id}-${index}`}
+            // key={marker.id}
             coordinate={{
               latitude: marker.latitude,
               longitude: marker.longitude,
@@ -124,7 +118,7 @@ const Map = (map: any) => {
             }
           />
         ))}
-      {/* {destinationLatitude && destinationLongitude && (
+        {/* {destinationLatitude && destinationLongitude && (
         <>
           <Marker
             key="destination"
@@ -150,7 +144,8 @@ const Map = (map: any) => {
           />
         </>
       )}  */}
-    </MapView>
+      </MapView>
+    </>
   );
 };
 

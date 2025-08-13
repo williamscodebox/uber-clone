@@ -127,13 +127,16 @@ declare interface LocationStore {
 declare interface DriverStore {
   drivers: MarkerData[];
   selectedDriver: number | null;
+  loading: boolean;
+  error: string | null;
   setSelectedDriver: (driverId: number) => void;
   setDrivers: (drivers: MarkerData[]) => void;
+  fetchDrivers: () => Promise<void>;
   clearSelectedDriver: () => void;
 }
 
 declare interface DriverCardProps {
   item: MarkerData;
-  selected: number;
+  selected: number | null;
   setSelected: () => void;
 }

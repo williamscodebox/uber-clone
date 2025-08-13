@@ -9,6 +9,7 @@ import { router } from "expo-router";
 import React, { useRef } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import DriverCard from "./DriverCard";
 
 const RideLayout = ({
   title,
@@ -58,21 +59,29 @@ const RideLayout = ({
             // >
             // {children}
             // </BottomSheetView>
-            <BottomSheetFlatList
-              data={drivers}
-              keyExtractor={(item, index) => index.toString()}
-              renderItem={({ item }) => (
-                // <DriverCard
-                //   item={item}
-                //   selected={selectedDriver!}
-                //   setSelected={() => setSelectedDriver(Number(item.id!))}
-                // />
-                <Text>Check</Text>
-              )}
-              ListFooterComponent={() => (
-                <View className="mx-5 mt-10 mb-8">{children}</View>
-              )}
-            />
+
+            drivers.length === 0 || drivers === null ? (
+              <Text className="text-center text-gray-500 mt-4">
+                No drivers available
+              </Text>
+            ) : (
+              <BottomSheetFlatList
+                data={drivers}
+                keyExtractor={(item, index) => item.id.toString()}
+                renderItem={({ item }) => (
+                  <>
+                    <DriverCard
+                      item={item}
+                      selected={selectedDriver}
+                      setSelected={() => setSelectedDriver(Number(item.id))}
+                    />
+                  </>
+                )}
+                ListFooterComponent={() => (
+                  <View className="mx-5 mt-10 mb-8">{children}</View>
+                )}
+              />
+            )
           ) : (
             <BottomSheetScrollView
               style={{

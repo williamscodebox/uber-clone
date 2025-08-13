@@ -52,8 +52,26 @@ export const useLocationStore = create<LocationStore>((set) => ({
 export const useDriverStore = create<DriverStore>((set) => ({
   drivers: [] as MarkerData[],
   selectedDriver: null,
+  loading: false,
+  error: null,
   setSelectedDriver: (driverId: number) =>
     set(() => ({ selectedDriver: driverId })),
   setDrivers: (drivers: MarkerData[]) => set(() => ({ drivers })),
   clearSelectedDriver: () => set(() => ({ selectedDriver: null })),
+  fetchDrivers: async () => {
+    set({ loading: true, error: null });
+    try {
+      const response = await fetch("/(api)/driver");
+      const json = await response.json();
+
+      if (json?.data) {
+        set({ drivers: json.data, loading: false });
+      } else {
+        throw new Error("Invalid response format");
+      }
+    } catch (err) {
+      console.error("Driver fetch error:", err);
+      set({ error: "Failed to load drivers", loading: false });
+    }
+  },
 }));
