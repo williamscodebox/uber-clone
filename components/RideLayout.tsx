@@ -9,7 +9,6 @@ import { router } from "expo-router";
 import React, { useRef } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import DriverCard from "./DriverCard";
 
 const RideLayout = ({
   title,
@@ -63,11 +62,12 @@ const RideLayout = ({
               data={drivers}
               keyExtractor={(item, index) => index.toString()}
               renderItem={({ item }) => (
-                <DriverCard
-                  item={item}
-                  selected={selectedDriver!}
-                  setSelected={() => setSelectedDriver(Number(item.id!))}
-                />
+                // <DriverCard
+                //   item={item}
+                //   selected={selectedDriver!}
+                //   setSelected={() => setSelectedDriver(Number(item.id!))}
+                // />
+                <Text>Check</Text>
               )}
               ListFooterComponent={() => (
                 <View className="mx-5 mt-10 mb-8">{children}</View>

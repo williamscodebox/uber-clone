@@ -1,10 +1,6 @@
 import { icons } from "@/constants";
 import { useFetch } from "@/lib/fetch";
-import {
-  calculateDriverTimes,
-  calculateRegion,
-  generateMarkersFromData,
-} from "@/lib/map";
+import { calculateRegion, generateMarkersFromData } from "@/lib/map";
 import { useDriverStore, useLocationStore } from "@/store";
 import { Driver, MarkerData } from "@/types/type";
 import React, { useEffect, useState } from "react";
@@ -23,43 +19,49 @@ const Map = (map: any) => {
     destinationLatitude,
     destinationLongitude,
   } = useLocationStore();
-  const { selectedDriver, setDrivers } = useDriverStore();
+  const { drivers, selectedDriver, setDrivers } = useDriverStore();
 
-  const { data: drivers, loading, error } = useFetch<Driver[]>("/(api)/driver");
+  const {
+    data: driversPulled,
+    loading,
+    error,
+  } = useFetch<Driver[]>("/(api)/driver");
   const [markers, setMarkers] = useState<MarkerData[]>([]);
+  console.log("🚗 Drivers fetched:", driversPulled);
 
   useEffect(() => {
-    setDrivers(drivers as MarkerData[]);
-    if (Array.isArray(drivers)) {
-      if (!userLatitude || !userLongitude) return;
-
-      const newMarkers = generateMarkersFromData({
-        data: drivers,
-        userLatitude,
-        userLongitude,
-      });
-
-      setMarkers(newMarkers);
+    if (driversPulled && Array.isArray(driversPulled)) {
+      setDrivers(driversPulled as MarkerData[]);
     }
+
+    if (!userLatitude || !userLongitude) return;
+
+    const newMarkers = generateMarkersFromData({
+      data: drivers,
+      userLatitude,
+      userLongitude,
+    });
+
+    setMarkers(newMarkers);
   }, [drivers, userLatitude, userLongitude]);
 
-  useEffect(() => {
-    if (
-      markers.length > 0 &&
-      destinationLatitude !== undefined &&
-      destinationLongitude !== undefined
-    ) {
-      calculateDriverTimes({
-        markers,
-        userLatitude,
-        userLongitude,
-        destinationLatitude,
-        destinationLongitude,
-      }).then((drivers: any) => {
-        setDrivers(drivers as MarkerData[]);
-      });
-    }
-  }, [markers, destinationLatitude, destinationLongitude]);
+  // useEffect(() => {
+  //   if (
+  //     markers.length > 0 &&
+  //     destinationLatitude !== undefined &&
+  //     destinationLongitude !== undefined
+  //   ) {
+  //     calculateDriverTimes({
+  //       markers,
+  //       userLatitude,
+  //       userLongitude,
+  //       destinationLatitude,
+  //       destinationLongitude,
+  //     }).then((drivers: any) => {
+  //       setDrivers(drivers as MarkerData[]);
+  //     });
+  //   }
+  // }, [markers, destinationLatitude, destinationLongitude]);
 
   const region = calculateRegion({
     userLatitude,
@@ -106,19 +108,22 @@ const Map = (map: any) => {
           image={icons.pin}
         />
       )}
-      {markers.map((marker, index) => (
-        <Marker
-          key={marker.id}
-          coordinate={{
-            latitude: marker.latitude,
-            longitude: marker.longitude,
-          }}
-          title={marker.title}
-          image={
-            selectedDriver === +marker.id ? icons.selectedMarker : icons.marker
-          }
-        />
-      ))}
+      {Array.isArray(markers) &&
+        markers.map((marker, index) => (
+          <Marker
+            key={marker.id}
+            coordinate={{
+              latitude: marker.latitude,
+              longitude: marker.longitude,
+            }}
+            title={marker.title}
+            image={
+              selectedDriver === +marker.id
+                ? icons.selectedMarker
+                : icons.marker
+            }
+          />
+        ))}
       {/* {destinationLatitude && destinationLongitude && (
         <>
           <Marker
