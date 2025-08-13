@@ -6,7 +6,7 @@ import { formatTime } from "@/lib/utils";
 import { DriverCardProps } from "@/types/type";
 
 const DriverCard = ({ item, selected, setSelected }: DriverCardProps) => {
-  console;
+  console.log("DriverCard rendered for item:", item);
 
   return (
     <TouchableOpacity
@@ -34,7 +34,8 @@ const DriverCard = ({ item, selected, setSelected }: DriverCardProps) => {
           <View className="flex flex-row items-center">
             <Image source={icons.dollar} className="w-4 h-4" />
             <Text className="text-sm font-JakartaRegular ml-1">
-              ${item.price}
+              {item.price ? `$${parseFloat(item.price).toFixed(2)}` : "$10.00"}
+              {/* ${item.price} */}
             </Text>
           </View>
 
@@ -43,7 +44,7 @@ const DriverCard = ({ item, selected, setSelected }: DriverCardProps) => {
           </Text>
 
           <Text className="text-sm font-JakartaRegular text-general-800">
-            {/* {formatTime(parseInt(`${item.time!}`) || 5)} */}
+            {formatTime(parseInt(`${item.time!}`) || 5)}
             {formatTime(item.time!)}
           </Text>
 
