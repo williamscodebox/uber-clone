@@ -34,12 +34,52 @@ const Payment = ({
   const openPaymentSheet = async () => {
     await initializePaymentSheet();
 
-    const { error } = await presentPaymentSheet();
+    const { error: paymentError } = await presentPaymentSheet();
 
-    if (error) {
-      Alert.alert(`Error code: ${error.code}`, error.message);
-    } else {
-      setSuccess(true);
+    if (paymentError) {
+      Alert.alert(`Error code: ${paymentError.code}`, paymentError.message);
+      return;
+    }
+
+    // Payment succeeded — now create the ride
+    try {
+      const response = await fetchAPI("/(api)/ride/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          origin_address: userAddress,
+          destination_address: destinationAddress,
+          origin_latitude: userLatitude,
+          origin_longitude: userLongitude,
+          destination_latitude: destinationLatitude,
+          destination_longitude: destinationLongitude,
+          //  ride_time: rideTime.toFixed(0),
+          ride_time: 5,
+          fare_price: parseInt(amount) * 100,
+          payment_status: "paid",
+          driver_id: driverId,
+          user_id: userId,
+        }),
+      });
+
+      const { error: rideError } = response;
+
+      if (rideError) {
+        Alert.alert(
+          "Error",
+          "Failed to create ride. Please try again.\n" + rideError.message
+        );
+      } else {
+        setSuccess(true);
+      }
+    } catch (err) {
+      Alert.alert(
+        "Unexpected Error",
+        "Something went wrong. Please try again."
+      );
+      console.error("Ride creation failed:", err);
     }
   };
 
@@ -87,26 +127,6 @@ const Payment = ({
             });
 
             if (result.client_secret) {
-              await fetchAPI("/(api)/ride/create", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  origin_address: userAddress,
-                  destination_address: destinationAddress,
-                  origin_latitude: userLatitude,
-                  origin_longitude: userLongitude,
-                  destination_latitude: destinationLatitude,
-                  destination_longitude: destinationLongitude,
-                  ride_time: rideTime.toFixed(0),
-                  fare_price: parseInt(amount) * 100,
-                  payment_status: "paid",
-                  driver_id: driverId,
-                  user_id: userId,
-                }),
-              });
-
               intentCreationCallback({
                 clientSecret: result.client_secret,
               });
