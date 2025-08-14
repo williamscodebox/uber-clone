@@ -62,9 +62,9 @@ const GoogleTextInput = ({
         }}
         onPress={(data, details = null) => {
           setIsLoading(false);
-          console.log("✅ Autocomplete onPress triggered");
-          console.log("DATA:", data);
-          console.log("DETAILS:", details);
+          // console.log("✅ Autocomplete onPress triggered");
+          // console.log("DATA:", data);
+          // console.log("DETAILS:", details);
 
           if (
             typeof details === "object" &&
