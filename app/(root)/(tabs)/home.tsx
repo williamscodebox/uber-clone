@@ -3,8 +3,9 @@ import Map from "@/components/Map";
 import RideCard from "@/components/RideCard";
 import { SignOutButton } from "@/components/SignOutButton";
 import { icons, images } from "@/constants";
-import { recentRides } from "@/data/rides";
+import { useFetch } from "@/lib/fetch";
 import { useLocationStore } from "@/store";
+import { Ride } from "@/types/type";
 import { useAuth, useUser } from "@clerk/clerk-expo";
 import * as Location from "expo-location";
 import { Href, router, useFocusEffect } from "expo-router";
@@ -27,9 +28,14 @@ const Home = () => {
   const [mapKey, setMapKey] = useState(new Date().getTime());
   const { user } = useUser();
   const { signOut } = useAuth();
-  const loading = false; // Placeholder for loading state
+  //const loading = false; // Placeholder for loading state
   const { setUserLocation, setDestinationLocation } = useLocationStore();
   const [hasPermission, setHasPermission] = useState<boolean>(false);
+  const {
+    data: recentRidesDB,
+    loading,
+    error,
+  } = useFetch<Ride[]>(`/(api)/ride/${user?.id}`);
 
   const handleSignOut = () => {
     // console.log("Signing out pressed");
@@ -91,7 +97,7 @@ const Home = () => {
   return (
     <SafeAreaView className="bg-general-500">
       <FlatList
-        data={recentRides?.slice(0, 5)}
+        data={recentRidesDB?.slice(0, 5)}
         //data={blankData}
         renderItem={({ item }) => <RideCard ride={item} />}
         keyExtractor={(item, index) => index.toString()}
