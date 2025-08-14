@@ -8,13 +8,12 @@ import { useLocationStore } from "@/store";
 import { Ride } from "@/types/type";
 import { useAuth, useUser } from "@clerk/clerk-expo";
 import * as Location from "expo-location";
-import { Href, router, useFocusEffect } from "expo-router";
-import React, { useCallback, useEffect, useState } from "react";
+import { Href, router } from "expo-router";
+import React, { useEffect, useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
   Image,
-  Platform,
   Text,
   TouchableOpacity,
   View,
@@ -25,7 +24,7 @@ const blankData: any = [];
 const findRide = "/(root)/find-ride" as Href;
 
 const Home = () => {
-  const [mapKey, setMapKey] = useState(new Date().getTime());
+  // const [mapKey, setMapKey] = useState(new Date().getTime());
   const { user } = useUser();
   const { signOut } = useAuth();
   //const loading = false; // Placeholder for loading state
@@ -79,20 +78,20 @@ const Home = () => {
 
     router.push(findRide);
   };
-  const test = () => {
-    if (Platform.OS === "android") {
-      setMapKey(new Date().getTime());
-      // console.log("Map key updated for Android");
-    }
-  };
-  useFocusEffect(
-    useCallback(() => {
-      if (Platform.OS === "android") {
-        setMapKey(new Date().getTime());
-        //console.log("Map key updated for Android");
-      }
-    }, [])
-  );
+  // const test = () => {
+  //   if (Platform.OS === "android") {
+  //     setMapKey(new Date().getTime());
+  //     // console.log("Map key updated for Android");
+  //   }
+  // };
+  // useFocusEffect(
+  //   useCallback(() => {
+  //     if (Platform.OS === "android") {
+  //       setMapKey(new Date().getTime());
+  //       //console.log("Map key updated for Android");
+  //     }
+  //   }, [])
+  // );
 
   return (
     <SafeAreaView className="bg-general-500">
@@ -157,7 +156,7 @@ const Home = () => {
                 Your current location
               </Text>
               <View className="flex flex-row items-center bg-transparent h-[300px]">
-                <Map key={mapKey} map={mapKey} />
+                <Map />
               </View>
             </>
             <Text className="text-xl font-JakartaBold mt-5 mb-3">
@@ -171,15 +170,15 @@ const Home = () => {
             <SignOutButton />
           </View>
         }
-        onScroll={({ nativeEvent }) => {
-          const yOffset = nativeEvent.contentOffset.y;
-          if (yOffset <= 400 && yOffset >= 350) {
-            setMapKey(new Date().getTime()); // Re-render the map
-            console.log("Scrolled to top, refreshing map");
-            test();
-          }
-        }}
-        scrollEventThrottle={16} // Recommended for smoother tracking
+        // onScroll={({ nativeEvent }) => {
+        //   const yOffset = nativeEvent.contentOffset.y;
+        //   if (yOffset <= 400 && yOffset >= 350) {
+        //     setMapKey(new Date().getTime()); // Re-render the map
+        //     console.log("Scrolled to top, refreshing map");
+        //     test();
+        //   }
+        // }}
+        // scrollEventThrottle={16} // Recommended for smoother tracking
       />
     </SafeAreaView>
   );
