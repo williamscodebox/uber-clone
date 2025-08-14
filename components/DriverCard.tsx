@@ -1,12 +1,11 @@
-import React from "react";
-import { Image, Text, TouchableOpacity, View } from "react-native";
-
 import { icons } from "@/constants";
 import { formatTime } from "@/lib/utils";
 import { DriverCardProps } from "@/types/type";
+import React from "react";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 
 const DriverCard = ({ item, selected, setSelected }: DriverCardProps) => {
-  console.log("DriverCard rendered for item:", item);
+  // console.log("DriverCard rendered for item:", item);
 
   return (
     <TouchableOpacity
