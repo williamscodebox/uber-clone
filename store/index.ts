@@ -1,6 +1,12 @@
 import { DriverStore, LocationStore, MarkerData } from "@/types/type";
 import { create } from "zustand";
 
+type TimestampStore = {
+  timestamp: number | null;
+  setTimestamp: (value: number) => void;
+  reset: () => void;
+};
+
 export const useLocationStore = create<LocationStore>((set) => ({
   userLatitude: null,
   userLongitude: null,
@@ -74,4 +80,11 @@ export const useDriverStore = create<DriverStore>((set) => ({
       set({ error: "Failed to load drivers", loading: false });
     }
   },
+}));
+
+export const useTimestampStore = create<TimestampStore>((set) => ({
+  timestamp: null,
+
+  setTimestamp: (value) => set({ timestamp: value }),
+  reset: () => set({ timestamp: null }),
 }));

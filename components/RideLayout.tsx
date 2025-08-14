@@ -22,6 +22,8 @@ const RideLayout = ({
 }) => {
   const bottomSheetRef = useRef<BottomSheet>(null);
   const { drivers, selectedDriver, setSelectedDriver } = useDriverStore();
+  // const { timestamp, setTimestamp, reset } = useTimestampStore();
+  // console.log(timestamp);
 
   return (
     <GestureHandlerRootView className="flex-1">
@@ -30,6 +32,9 @@ const RideLayout = ({
           <View className="flex flex-row absolute z-10 top-16 items-center justify-start px-5">
             <TouchableOpacity
               onPress={() => {
+                // if (Platform.OS === "android") {
+                //   setTimestamp(new Date().getTime());
+                // }
                 router.back();
               }}
             >
@@ -46,6 +51,7 @@ const RideLayout = ({
             </Text>
           </View>
 
+          {/* <Map map={timestamp ? timestamp : 1} /> */}
           <Map />
         </View>
 
