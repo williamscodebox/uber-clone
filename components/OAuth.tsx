@@ -1,21 +1,24 @@
 import { icons } from "@/constants";
+import { googleOAuth } from "@/lib/auth";
+import { useSSO } from "@clerk/clerk-expo";
+import { router } from "expo-router";
 import React from "react";
-import { Image, Text, View } from "react-native";
+import { Alert, Image, Text, View } from "react-native";
 import CustomButton from "./CustomButton";
 
 const OAuth = () => {
-  // const { startOAuthFlow } = useOAuth({ strategy: "oauth_google" });
+  const { startSSOFlow } = useSSO();
 
   const handleGoogleSignIn = async () => {
-    // const result = await googleOAuth(startOAuthFlow);
+    const result = await googleOAuth(startSSOFlow);
 
-    // if (result.code === "session_exists") {
-    //   Alert.alert("Success", "Session exists. Redirecting to home screen.");
-    //   router.replace("/(root)/(tabs)/home");
-    // }
+    if (result.code === "session_exists") {
+      Alert.alert("Success", "Session exists. Redirecting to home screen.");
+      router.replace("/(root)/(tabs)/home");
+    }
 
-    // Alert.alert(result.success ? "Success" : "Error", result.message);
-    console.log("Google Sign In clicked");
+    Alert.alert(result.success ? "Success" : "Error", result.message);
+    // console.log("Google Sign In clicked");
   };
 
   return (

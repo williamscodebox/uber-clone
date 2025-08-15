@@ -1,4 +1,4 @@
-import * as Linking from "expo-linking";
+import * as AuthSession from "expo-auth-session";
 import * as SecureStore from "expo-secure-store";
 
 import { fetchAPI } from "@/lib/fetch";
@@ -28,10 +28,15 @@ export const tokenCache = {
   },
 };
 
-export const googleOAuth = async (startOAuthFlow: any) => {
+export const googleOAuth = async (startSSOFlow: any) => {
   try {
-    const { createdSessionId, setActive, signUp } = await startOAuthFlow({
-      redirectUrl: Linking.createURL("/(root)/(tabs)/home"),
+    const redirectUrl = AuthSession.makeRedirectUri({
+      scheme: "uberclone", // Replace with your app's scheme
+      path: "/(root)/(tabs)/home", // Optional: customize the path
+    });
+    const { createdSessionId, setActive, signUp } = await startSSOFlow({
+      strategy: "oauth_google",
+      redirectUrl,
     });
 
     if (createdSessionId) {
